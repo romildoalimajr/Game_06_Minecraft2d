@@ -12,8 +12,11 @@ public class World {
 	public static final int TILE_SIZE = 16;
 
 	public World() {
-		WIDTH = 200;
+		String[] tilesTypes = { "grama", "terra", "areia", "neve" };
+		WIDTH = 300;
 		HEIGHT = 80;
+		// Divisor de mapas
+		int divisao = WIDTH / tilesTypes.length;
 		tiles = new Tile[WIDTH * HEIGHT];
 		for (int xx = 0; xx < WIDTH; xx++) {
 			int initialHeight = Entity.rand.nextInt(12 - 8) + 8;
@@ -23,15 +26,19 @@ public class World {
 					tiles[xx + yy * WIDTH].solid = true;
 				} else {
 					if (yy >= initialHeight) {
-						if (xx < 80) {
+						int indexBioma = xx / divisao;
+						if (tilesTypes[indexBioma] == "grama") {
 							tiles[xx + yy * WIDTH] = new WallTile(xx * 16, yy * 16, Tile.TILE_GRAMA);
-						} else if (xx < 130) {
+						} else if (tilesTypes[indexBioma] == "terra") {
 							tiles[xx + yy * WIDTH] = new WallTile(xx * 16, yy * 16, Tile.TILE_TERRA);
-						} else if(xx < 170){
+						} else if (tilesTypes[indexBioma] == "areia") {
 							tiles[xx + yy * WIDTH] = new WallTile(xx * 16, yy * 16, Tile.TILE_AREIA);
-						}else {
+						} else if (tilesTypes[indexBioma] == "neve") {
 							tiles[xx + yy * WIDTH] = new WallTile(xx * 16, yy * 16, Tile.TILE_NEVE);
+						} else {
+							tiles[xx + yy * WIDTH] = new FloorTile(xx * 16, yy * 16, Tile.TILE_AR);
 						}
+
 					} else {
 						tiles[xx + yy * WIDTH] = new FloorTile(xx * 16, yy * 16, Tile.TILE_AR);
 					}

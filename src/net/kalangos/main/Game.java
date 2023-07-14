@@ -170,14 +170,28 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = true;
+		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			player.jump = true;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
-		
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		}
 	}
+
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -204,7 +218,10 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {	
+	public void mousePressed(MouseEvent e) {
+		inventory.isPressed = true;
+		inventory.mouseX = e.getX();
+		inventory.mouseY = e.getY();
 	}
 
 	@Override

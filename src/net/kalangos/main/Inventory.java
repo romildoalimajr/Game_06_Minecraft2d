@@ -3,7 +3,11 @@ package net.kalangos.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import net.kalangos.world.Camera;
+import net.kalangos.world.FloorTile;
 import net.kalangos.world.Tile;
+import net.kalangos.world.WallTile;
+import net.kalangos.world.World;
 
 public class Inventory {
 
@@ -12,7 +16,7 @@ public class Inventory {
 
 	public int mouseX, mouseY;
 
-	public boolean isPlaceItem= false;
+	public boolean isPlaceItem = false;
 	public int inventoryBoxSize = 45;
 
 	public String[] items = { "grama", "terra", "neve", "areia", "ar", "" };
@@ -27,6 +31,28 @@ public class Inventory {
 						&& mouseY < Game.HEIGHT * Game.SCALE - inventoryBoxSize - 1 + inventoryBoxSize) {
 					selected = (int) ((mouseX - initialPosition) / inventoryBoxSize);
 				}
+			}
+		}
+		if (isPlaceItem) {
+			isPlaceItem = false;
+			mouseX = (int) mouseX / 3 + Camera.x;
+			mouseY = (int) mouseY / 3 + Camera.y;
+
+			int tilex = mouseX / 16;
+			int tiley = mouseY / 16;
+			if (World.tiles[tilex + tiley * World.WIDTH].solid == false) {
+				if (items[selected] == "grama") {
+					World.tiles[tilex + tiley * World.WIDTH] = new WallTile(tilex * 16, tiley * 16, Tile.TILE_GRAMA);
+				} else if (items[selected] == "terra") {
+					World.tiles[tilex + tiley * World.WIDTH] = new WallTile(tilex * 16, tiley * 16, Tile.TILE_TERRA);
+				} else if (items[selected] == "ar") {
+					World.tiles[tilex + tiley * World.WIDTH] = new FloorTile(tilex * 16, tiley * 16, Tile.TILE_AR);
+				}
+				
+				if(World.isFree(Game.player.getX(), Game.player.getY()) == false) {
+					World.tiles[tilex + tiley * World.WIDTH] = new FloorTile(tilex * 16, tiley * 16, Tile.TILE_AR);
+				}
+
 			}
 		}
 
@@ -48,7 +74,7 @@ public class Inventory {
 			} else if (items[i] == "terra") {
 				g.drawImage(Tile.TILE_TERRA, initialPosition + (i * inventoryBoxSize) + 7,
 						Game.HEIGHT * Game.SCALE - inventoryBoxSize + 7, 32, 32, null);
-			}else if(items[i] == "ar") {
+			} else if (items[i] == "ar") {
 				g.drawImage(Tile.TILE_AR, initialPosition + (i * inventoryBoxSize) + 7,
 						Game.HEIGHT * Game.SCALE - inventoryBoxSize + 7, 32, 32, null);
 			}

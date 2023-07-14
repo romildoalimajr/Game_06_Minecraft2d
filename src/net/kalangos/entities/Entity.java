@@ -14,6 +14,12 @@ import net.kalangos.world.Vector2i;
 import net.kalangos.world.World;
 
 public class Entity {
+	
+	public static BufferedImage[] PLAYER_SPRITE_RIGHT = { Game.spritesheet.getSprite(0, 32, 16, 16),
+			Game.spritesheet.getSprite(16, 32, 16, 16) };
+
+	public static BufferedImage[] PLAYER_SPRITE_LEFT = { Game.spritesheet.getSprite(0, 48, 16, 16),
+			Game.spritesheet.getSprite(16, 48, 16, 16) };
 
 	protected double x;
 	protected double y;

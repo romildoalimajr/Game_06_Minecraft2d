@@ -47,6 +47,10 @@ public class Inventory {
 					World.tiles[tilex + tiley * World.WIDTH] = new WallTile(tilex * 16, tiley * 16, Tile.TILE_TERRA);
 				} else if (items[selected] == "ar") {
 					World.tiles[tilex + tiley * World.WIDTH] = new FloorTile(tilex * 16, tiley * 16, Tile.TILE_AR);
+				}else if (items[selected] == "areia") {
+					World.tiles[tilex + tiley * World.WIDTH] = new WallTile(tilex * 16, tiley * 16, Tile.TILE_AREIA);
+				}else if (items[selected] == "neve") {
+					World.tiles[tilex + tiley * World.WIDTH] = new WallTile(tilex * 16, tiley * 16, Tile.TILE_NEVE);
 				}
 				
 				if(World.isFree(Game.player.getX(), Game.player.getY()) == false) {
@@ -77,7 +81,15 @@ public class Inventory {
 			} else if (items[i] == "ar") {
 				g.drawImage(Tile.TILE_AR, initialPosition + (i * inventoryBoxSize) + 7,
 						Game.HEIGHT * Game.SCALE - inventoryBoxSize + 7, 32, 32, null);
+			} else if (items[i] == "areia") {
+				g.drawImage(Tile.TILE_AREIA, initialPosition + (i * inventoryBoxSize) + 7,
+						Game.HEIGHT * Game.SCALE - inventoryBoxSize + 7, 32, 32, null);
+			} else if (items[i] == "neve") {
+				g.drawImage(Tile.TILE_NEVE, initialPosition + (i * inventoryBoxSize) + 7,
+						Game.HEIGHT * Game.SCALE - inventoryBoxSize + 7, 32, 32, null);
 			}
+
+
 
 			if (selected == i) {
 				g.setColor(Color.red);

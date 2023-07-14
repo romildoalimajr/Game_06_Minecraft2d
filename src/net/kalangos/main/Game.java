@@ -56,7 +56,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 		//Inicializando objetos.
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
-		player = new Player(WIDTH/2 - 30,HEIGHT/2,16,16,2,spritesheet.getSprite(0,32,16,16));
+		player = new Player(WIDTH/2 - 30,HEIGHT/2,16,16,1,spritesheet.getSprite(0,32,16,16));
 		world = new World();
 		ui = new UI();
 		inventory = new Inventory();
@@ -102,7 +102,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener,M
 			Entity e = entities.get(i);
 			e.tick();
 		}
-
+		ui.tick();
 		inventory.tick();
 		
 	}

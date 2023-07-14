@@ -11,7 +11,7 @@ public class Player extends Entity {
 
 	public boolean right, left;
 
-	public static double life = 100;
+	public double life = 100;
 
 	public int dir = 1;
 	private double gravity = 0.3;

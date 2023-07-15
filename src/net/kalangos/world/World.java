@@ -3,6 +3,7 @@ package net.kalangos.world;
 import java.awt.Graphics;
 
 import net.kalangos.entities.Entity;
+import net.kalangos.graficos.UI;
 import net.kalangos.main.Game;
 
 public class World {
@@ -10,6 +11,10 @@ public class World {
 	public static Tile[] tiles;
 	public static int WIDTH, HEIGHT;
 	public static final int TILE_SIZE = 16;
+	
+	public static int dia = 0;
+	public static int noite = 1;
+	public static int CICLO = Entity.rand.nextInt(2);
 
 	public World() {
 		String[] tilesTypes = { "grama", "terra", "areia", "neve" };
@@ -66,6 +71,8 @@ public class World {
 				|| (tiles[x3 + (y3 * World.WIDTH)] instanceof WallTile)
 				|| (tiles[x4 + (y4 * World.WIDTH)] instanceof WallTile));
 	}
+	
+	
 
 	public static void restartGame() {
 		// TODO: Aplicar m�todo para reiniciar o jogo corretamente.

@@ -106,6 +106,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		inventory.tick();
 		enemySpawn.tick();  
 
+
 	}
 
 	public void render() {

@@ -1,9 +1,11 @@
 package net.kalangos.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import net.kalangos.main.Game;
+import net.kalangos.world.Camera;
 import net.kalangos.world.FloorTile;
 import net.kalangos.world.Tile;
 import net.kalangos.world.WallTile;
@@ -13,7 +15,8 @@ public class Enemy extends Entity {
 
 	public boolean right = true, left = false;
 
-	public int life = 3;
+	public double life = Entity.rand.nextInt(200-60)+60;
+	public double maxLife = life;
 
 	public BufferedImage sprite1, sprite2;
 
@@ -60,7 +63,12 @@ public class Enemy extends Entity {
 				left = false;
 			}
 		}
-
+		
+		if(life == 0)
+		{
+			Game.entities.remove(this);
+			return;
+		}
 	}
 
 	public void render(Graphics g) {
@@ -70,6 +78,12 @@ public class Enemy extends Entity {
 			sprite = sprite2;
 		}
 		super.render(g);
+		
+		int curLife = (int)(life / maxLife) * 10;
+		g.setColor(Color.red);
+		g.fillRect(this.getX() - 4 - Camera.x, this.getY() - 8 - Camera .y, 20, 5);
+		g.setColor(Color.green);
+		g.fillRect(this.getX() - 4 - Camera.x, this.getY() - 8 - Camera.y, curLife, 5);
 	}
 
 }

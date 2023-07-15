@@ -35,13 +35,13 @@ public class UI {
 	}
 
 	public void render(Graphics g) {
-		int curLife = (int)(Game.player.life / 100) + 200;
+		int curLife = (int)(Game.player.life / 100) * 200;
 		
-		g.setColor(Color.RED);
+		g.setColor(Color.red);
+		g.fillRect(Game.WIDTH*Game.SCALE - 220, 10, 200, 30);
+		g.setColor(Color.green);
 		g.fillRect(Game.WIDTH*Game.SCALE - 220, 10, curLife, 30);
-		g.setColor(Color.GREEN);
-		g.fillRect(Game.WIDTH*Game.SCALE - 220, 10, curLife, 30);
-		g.setColor(Color.WHITE);
+		g.setColor(Color.white);
 		g.setFont(new Font("arial", Font.BOLD, 23));
 		g.drawString((int)(Game.player.life) + "/" + "100", Game.WIDTH * Game.SCALE - 160, 35);
 		

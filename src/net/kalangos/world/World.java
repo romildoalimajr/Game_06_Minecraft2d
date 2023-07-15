@@ -13,7 +13,7 @@ public class World {
 
 	public World() {
 		String[] tilesTypes = { "grama", "terra", "areia", "neve" };
-		WIDTH = 300;
+		WIDTH = 1000;
 		HEIGHT = 80;
 		// Divisor de mapas
 		int divisao = WIDTH / tilesTypes.length;
